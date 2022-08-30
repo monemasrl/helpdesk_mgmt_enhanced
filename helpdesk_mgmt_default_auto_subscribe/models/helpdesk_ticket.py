@@ -15,15 +15,17 @@ class HelpdeskTicket(models.Model):
 
             if partner_email:
                 partner_ids = [
-                    p.id
+                    p
                     for p in self.env["mail.thread"]._mail_find_partner_from_emails(
                         [partner_email], records=self, force_create=True
                     )
                     if p
                 ]
 
-                if partner_ids:
-                    vals["partner_id"] = partner_ids[0]
+                for p in partner_ids:
+                    vals["partner_id"] = p.id
+                    vals["partner_name"] = p.name
+                    vals["partner_email"] = p.email
 
                 ticket = super().create(vals)
                 ticket.message_subscribe(partner_ids)
