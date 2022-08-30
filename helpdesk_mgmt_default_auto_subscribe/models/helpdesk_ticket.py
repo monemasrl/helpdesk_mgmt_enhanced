@@ -34,6 +34,6 @@ class HelpdeskTicket(models.Model):
         else:
             vals.get("partner_id")
             ticket = super().create(vals)
-            ticket.message_subscribe(partner_ids)
+            ticket.message_subscribe(vals.get("partner_id"))
 
             return ticket
