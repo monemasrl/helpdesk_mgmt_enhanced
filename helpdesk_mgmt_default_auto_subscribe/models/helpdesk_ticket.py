@@ -3,13 +3,15 @@
 #    __manifest__.py file at the root folder of this module.                  #
 ###############################################################################
 
-from odoo import models
+from odoo import api, models
 
 
 class HelpdeskTicket(models.Model):
     _inherit = "helpdesk.ticket"
 
+    @api.model
     def create(self, vals):
+        partner_ids = []
         if not vals.get("partner_id", False):
             partner_email = vals.get("partner_email", False)
 
@@ -21,7 +23,6 @@ class HelpdeskTicket(models.Model):
                     )
                     if p
                 ]
-                partner_ids = []
 
                 for p in partners:
                     partner_ids.append(p.id)
@@ -29,17 +30,20 @@ class HelpdeskTicket(models.Model):
                     vals["partner_name"] = p.name
                     vals["partner_email"] = p.email
 
-                ticket = super().create(vals)
-                ticket.message_subscribe(partner_ids)
-
-                return ticket
         else:
             partners = self.env["res.partner"].browse([vals.get("partner_id")])
             for p in partners:
                 vals["partner_name"] = p.name
                 vals["partner_email"] = p.email
 
-            ticket = super().create(vals)
-            ticket.message_subscribe([vals.get("partner_id")])
+            partner_ids = partners.mapped(lambda r: r.id)
 
-            return ticket
+        ticket = super().create(vals)
+        ticket.message_subscribe(partner_ids)
+
+        if ticket.stage_id.mail_template_id:
+            ticket.stage_id.mail_template_id.send_mail(
+                ticket.id, force_send=True, notif_layout=False
+            )
+
+        return ticket
