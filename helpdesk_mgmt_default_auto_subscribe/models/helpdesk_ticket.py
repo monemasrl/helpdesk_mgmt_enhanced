@@ -22,6 +22,9 @@ class HelpdeskTicket(models.Model):
                     if p
                 ]
 
+                if partner_ids:
+                    vals["partner_id"] = partner_ids[0].id
+
                 ticket = super().create(vals)
                 ticket.message_subscribe(partner_ids)
 
