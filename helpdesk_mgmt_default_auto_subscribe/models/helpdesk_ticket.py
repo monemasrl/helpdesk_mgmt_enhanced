@@ -14,15 +14,17 @@ class HelpdeskTicket(models.Model):
             partner_email = vals.get("partner_email", False)
 
             if partner_email:
-                partner_ids = [
+                partners = [
                     p
                     for p in self.env["mail.thread"]._mail_find_partner_from_emails(
                         [partner_email], records=self, force_create=True
                     )
                     if p
                 ]
+                partner_ids = []
 
-                for p in partner_ids:
+                for p in partners:
+                    partner_ids.append(p.id)
                     vals["partner_id"] = p.id
                     vals["partner_name"] = p.name
                     vals["partner_email"] = p.email
@@ -32,8 +34,12 @@ class HelpdeskTicket(models.Model):
 
                 return ticket
         else:
-            vals.get("partner_id")
+            partners = self.env["res.partner"].browse([vals.get("partner_id")])
+            for p in partners:
+                vals["partner_name"] = p.name
+                vals["partner_email"] = p.email
+
             ticket = super().create(vals)
-            ticket.message_subscribe(vals.get("partner_id"))
+            ticket.message_subscribe([vals.get("partner_id")])
 
             return ticket
