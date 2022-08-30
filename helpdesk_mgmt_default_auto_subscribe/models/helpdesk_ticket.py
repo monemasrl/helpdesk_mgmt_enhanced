@@ -23,7 +23,7 @@ class HelpdeskTicket(models.Model):
                 ]
 
                 if partner_ids:
-                    vals["partner_id"] = partner_ids[0].id
+                    vals["partner_id"] = partner_ids[0]
 
                 ticket = super().create(vals)
                 ticket.message_subscribe(partner_ids)
@@ -35,5 +35,3 @@ class HelpdeskTicket(models.Model):
             ticket.message_subscribe(partner_ids)
 
             return ticket
-
-        return super().create(vals)
