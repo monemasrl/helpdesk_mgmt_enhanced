@@ -24,7 +24,7 @@
                                         <field
                                             name="on_create_mail_template_id"
                                             required="1"
-                                            attrs="{'invisible': [('send_mail_on_create', '=', True)]}" />
+                                            attrs="{'invisible': [('send_mail_on_create', '!=', True)]}" />
                                     </div>
                                 </div>
                             </div>
