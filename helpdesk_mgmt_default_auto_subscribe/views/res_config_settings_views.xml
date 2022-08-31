@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="action_report_qweb-pdf" model="ir.actions.report.xml">
+    <record id="res_config_settings_view_form" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.inherit.helpdesk_mgmt_</field>
         <field name="model">res.config.settings</field>
         <field name="priority" eval="55" />
