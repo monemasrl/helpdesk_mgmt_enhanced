@@ -10,5 +10,7 @@
     "category": "After-Sales",
     "application": False,
     "depends": ["helpdesk_mgmt", "helpdesk_mgmt_enhanced_base"],
-    "data": [],
+    "data": [
+        "views/res_config_settings_views.xml",
+    ],
 }
