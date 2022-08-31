@@ -6,7 +6,7 @@
 from odoo import fields, models
 
 
-class ResConfigSettings(models.Model):
+class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     send_mail_on_create = fields.Boolean(
