@@ -41,9 +41,20 @@ class HelpdeskTicket(models.Model):
         ticket = super().create(vals)
         ticket.message_subscribe(partner_ids)
 
-        if ticket.stage_id.mail_template_id:
-            ticket.stage_id.mail_template_id.send_mail(
-                ticket.id, force_send=True, notif_layout=False
+        send_mail_on_create = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("helpdesk.send_mail_on_create", default=False)
+        )
+
+        if send_mail_on_create:
+            on_create_mail_template_id = (
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("helpdesk.on_create_mail_template_id", default=False)
             )
+
+            template_id = self.env["mail.template"].browse([on_create_mail_template_id])
+            template_id.send_mail(ticket.id, force_send=True, notif_layout=False)
 
         return ticket
