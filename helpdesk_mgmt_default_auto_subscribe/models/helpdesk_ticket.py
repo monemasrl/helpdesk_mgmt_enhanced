@@ -3,7 +3,11 @@
 #    __manifest__.py file at the root folder of this module.                  #
 ###############################################################################
 
+import logging
+
 from odoo import api, models
+
+_logger = logging.getLogger(__name__)
 
 
 class HelpdeskTicket(models.Model):
@@ -48,12 +52,15 @@ class HelpdeskTicket(models.Model):
         )
 
         if send_mail_on_create:
-            template_id = (
+            on_create_mail_template_id = (
                 self.env["ir.config_parameter"]
                 .sudo()
                 .get_param("helpdesk.on_create_mail_template_id", default=False)
             )
 
+            template_id = self.env["mail.template"].browse(
+                [int(on_create_mail_template_id)]
+            )
             template_id.send_mail(ticket.id, force_send=True, notif_layout=False)
 
         return ticket
