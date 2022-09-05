@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <!-- primary|extension Inherited .:Tree:. view for "model" -->
+        <record id="helpdesk_mgmt_enhanced_sla_action_list" model="ir.ui.view">
+            <field name="name">helpdesk_mgmt_enhanced_sla.action.tree</field>
+            <field name="model">helpdesk.enhanced.action</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" optional="show" />
+                    <field name="group_id" optional="show" />
+                    <field name="state_id" optional="show" />
+                    <field name="next_state_id" optional="show" />
+                    <field name="timer_action" optional="show" />
+                    <field name="priority_action" optional="show" />
+                    <field name="activation" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- primary|extension Inherited .:Form:. view for "model" -->
+        <!-- <record id="albofornitori.accreditation_request_form" model="ir.ui.view">
+            <field name="name">albofornitori.accreditation.request.form</field>
+            <field name="model">eprocurement.accreditation.request</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <form string="model_form" create="true" delete="true" edit="true">
+                    <header>
+                        <field name="state" widget="statusbar" />
+                         <button name="action_send_to_draft"
+                            string="Rifiuta"
+                            type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'validation')]}"/>
+                         <button name="action_send_to_ready"
+                            string="Completa"
+                            type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                         <button name="action_send_to_validation"
+                            string="Invia a verifica"
+                            type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'ready')]}"/>
+                         <button name="action_approve"
+                            string="Approva"
+                            type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'validation')]}"/>
+                         <button name="action_expire"
+                            string="Forza scaduto"
+                            type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'approved')]}"/>
+                         <button name="action_send_to_draft"
+                            string="Forza a Bozza"
+                            type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'expired')]}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" />
+                            <h1>
+                                <field name="name" class="oe_inline"
+                                    placeholder="name" readonly="1"/>
+                            </h1>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="partner_id" />
+                            </group>
+                            <group>
+                                <field name="merchandise_group_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="documenti" string="Documenti" autofocus="autofocus">
+                                <field name="document_ids" domain="[('partner_id','=',partner_id)]" context="{'default_partner_id': partner_id}">
+                                    <tree delete="true" limit="10">
+                                        <field name="document_type_id"/>
+                                        <field name="is_expired" />
+                                        <field name="expiration_date"/>
+                                        <field name="state" widget="badge"
+                                            decoration-warning="state == 'empty'"
+                                            decoration-success="state == 'valid'"
+                                            decoration-danger="state == 'expired'"
+                                            optional="show"
+                                        />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="certifications" string="Certificazioni" autofocus="autofocus">
+                                <field name="certification_document_ids">
+                                    <tree delete="true" limit="10">
+                                        <field name="name"/>
+                                        <field name="is_expired" />
+                                        <field name="expiration_date"/>
+                                        <field name="state" widget="badge"
+                                            decoration-warning="state == 'empty'"
+                                            decoration-success="state == 'valid'"
+                                            decoration-danger="state == 'expired'"
+                                            optional="show"
+                                        />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record> -->
+
+        <!-- primary|extension Inherited .:Search:. view for "model" -->
+        <!-- <record id="albofornitori.accreditation_request_search" model="ir.ui.view">
+            <field name="name">albofornitori.accreditation.request.search</field>
+            <field name="model">eprocurement.accreditation.request</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <search>
+                    <field name="partner_id" />
+                    <field name="name" />
+                    <field name="merchandise_group_id" />
+                    <filter string="Bozza" name="state_draft" domain="[('state', '=', 'draft')]"/>
+                    <filter string="Pronto" name="state_ready" domain="[('state', '=', 'ready')]"/>
+                    <filter string="Da Validare" name="state_validation" domain="[('state', '=', 'validation')]"/>
+                    <filter string="Approvato" name="state_approved" domain="[('state', '=', 'approved')]"/>
+                    <filter string="Scaduto" name="state_expired" domain="[('state', '=', 'expired')]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="state" string="State" context="{'group_by': 'state'}"/>
+                        <filter name="merchandise_group_id" string="Merchandise Group" context="{'group_by': 'merchandise_group_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record> -->
+
+        <!-- <record model="ir.actions.act_window" id="albofornitori.accreditation_request_action_window">
+            <field name="name">Richieste Accreditamento</field>
+            <field name="res_model">eprocurement.accreditation.request</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
+            <field name="search_view_id" ref="albofornitori.accreditation_request_search"/>
+        </record> -->
+        <!-- <record model="ir.actions.act_window.view" id="albofornitori.accreditation_request_action_window_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="albofornitori.accredition_request_list"/>
+            <field name="act_window_id" ref="albofornitori.accreditation_request_action_window"/>
+        </record> -->
+
+        <!-- <record model="ir.actions.act_window.view" id="albofornitori.accreditation_request_action_window_form">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="albofornitori.accreditation_request_form"/>
+            <field name="act_window_id" ref="albofornitori.accreditation_request_action_window"/>
+        </record> -->
+
+        <!-- <record model="ir.actions.server" id="albofornitori.action_server">
+            <field name="name">Fornitori</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">
+            action = {
+                "type": "ir.actions.act_window",
+                "view_mode": "tree,form",
+                "res_model": model._name,
+            }
+            </field>
+        </record> -->
+        <record id="action_helpdesk_enhanced_sla_action_act_window" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Actions</field>
+            <field name="res_model">helpdesk.enhanced.action</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="domain">[]</field>
+            <field name="context">\{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add new Action
+                </p>
+            </field>
+        </record>
+</odoo>
