@@ -12,7 +12,7 @@
             <xpath expr="//field[@name='team_ids']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
-            <xpath expr="//field[@name='']" position="after">
+            <xpath expr="//field[@name='note']" position="after">
                 <field name="action_ids" />
             </xpath>
         </field>
