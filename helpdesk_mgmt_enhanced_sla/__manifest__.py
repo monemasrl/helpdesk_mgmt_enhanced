@@ -12,5 +12,6 @@
     "depends": ["helpdesk_mgmt", "helpdesk_mgmt_sla"],
     "data": [
         "views/action_views.xml",
+        "views/menu.xml",
     ],
 }

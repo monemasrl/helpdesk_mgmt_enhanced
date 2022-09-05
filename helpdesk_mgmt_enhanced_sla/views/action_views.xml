@@ -191,12 +191,4 @@
                 </p>
             </field>
         </record>
-
-        <menuitem
-            id="helpdesk_sla_actions"
-            name="SLA Actions"
-            parent="helpdesk_mgmt.helpdesk_ticket_config_main_menu"
-            action="action_helpdesk_enhanced_sla_action_act_window"
-            sequence="9"
-        />
 </odoo>
