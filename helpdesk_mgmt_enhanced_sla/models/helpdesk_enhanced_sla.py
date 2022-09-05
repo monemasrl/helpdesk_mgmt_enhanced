@@ -40,7 +40,7 @@ class HelpdeskEnhancedSla(models.Model):
         # for ticket in ticket_ids.filtered(lambda t: not t.stage_id.closed):
         for ticket in self:
             deadline = ticket.create_date
-            working_calendar = ticket.team_id.resource_calendar_id
+            working_calendar = ticket.sla_id.team_id.resource_calendar_id
 
             if self.days > 0:
                 deadline = working_calendar.plan_days(
