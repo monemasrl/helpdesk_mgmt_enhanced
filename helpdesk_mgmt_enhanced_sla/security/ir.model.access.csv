@@ -1,3 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_helpdesk_action_manager,access_helpdesk_action_manager,model_helpdesk_action,helpdesk_mgmt.group_helpdesk_manager,1,1,1,1
-access_helpdesk_action_manager,access_helpdesk_action_manager,model_helpdesk_action,base.user,1,1,1,1

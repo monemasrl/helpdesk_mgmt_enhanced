@@ -11,6 +11,7 @@
     "application": False,
     "depends": ["helpdesk_mgmt", "helpdesk_mgmt_sla"],
     "data": [
+        "security/ir.model.access.csv",
         "views/action_views.xml",
         "views/menu.xml",
     ],
