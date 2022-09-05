@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-        <menuitem name="Enhanced" id="helpdesk_mgmt_enhanced_sla.config" parent="helpdesk_mgmt.helpdesk_ticket_config_main_menu" sequence="100" />
+        <menuitem
+            name="Enhanced"
+            id="helpdesk_mgmt_enhanced_sla.config"
+            parent="helpdesk_mgmt.helpdesk_ticket_config_main_menu"
+            sequence="100"
+            groups="helpdesk_mgmt.group_helpdesk_manager"
+        />
         <menuitem
             id="helpdesk_mgmt_enhanced_sla.actions"
             name="SLA Actions"
             parent="helpdesk_mgmt_enhanced_sla.config"
             action="action_helpdesk_enhanced_sla_action_act_window"
+            groups="helpdesk_mgmt.group_helpdesk_manager"
             sequence="9"
         />
 </odoo>
