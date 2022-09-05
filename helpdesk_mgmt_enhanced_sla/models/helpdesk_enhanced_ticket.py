@@ -29,3 +29,4 @@ class HelpdeskTicket(models.Model):
     @api.onchange("sla_id")
     def _onchange_sla_id(self):
         self.team_id = self.sla_id.team_id
+        self.sla_id.check_sla()
