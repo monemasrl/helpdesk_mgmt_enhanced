@@ -33,7 +33,7 @@
                 <field name="sla_id" />
                 <field name="sla_status" />
             </xpath>
-            <xpath expr="//field[@name='sla_deadline']" position="attrs">
+            <xpath expr="//field[@name='sla_deadline']" position="attributes">
                 <attribute name="invisible">
                     [('sla_id', '=', False)]
                 </attribute>
