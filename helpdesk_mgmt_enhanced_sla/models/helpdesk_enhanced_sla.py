@@ -28,15 +28,15 @@ class HelpdeskEnhancedSla(models.Model):
         column2="helpdesk_sla_id",
     )
 
-    def check_sla(self):
-        _logger.debug("CHECK SLA")
-        for team in self.team_id:
-            _logger.debug("Team: {}".format(self.team_id))
-            if team.ticket_ids:
-                _logger.debug("Calling check_ticket_sla")
-                self.check_ticket_sla(team.ticket_ids)
+    # def check_sla(self):
+    #     _logger.debug("CHECK SLA")
+    #     for team in self.team_id:
+    #         _logger.debug("Team: {}".format(self.team_id))
+    #         if team.ticket_ids:
+    #             _logger.debug("Calling check_ticket_sla")
+    #             self.check_ticket_sla(team.ticket_ids)
 
-    def check_ticket_sla(self):
+    def check_ticket_sla2(self):
         # for ticket in ticket_ids.filtered(lambda t: not t.stage_id.closed):
         for ticket in self:
             deadline = ticket.create_date
