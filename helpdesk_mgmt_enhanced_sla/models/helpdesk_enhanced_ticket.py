@@ -3,7 +3,7 @@
 #    __manifest__.py file at the root folder of this module.                  #
 ###############################################################################
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class HelpdeskTicket(models.Model):
@@ -25,3 +25,7 @@ class HelpdeskTicket(models.Model):
     sla_last_applied_action = fields.Char(
         string="Last Applied Action",
     )
+
+    @api.onchange("sla_id")
+    def _onchange_sla_id(self):
+        self.team_id = self.sla_id.team_id

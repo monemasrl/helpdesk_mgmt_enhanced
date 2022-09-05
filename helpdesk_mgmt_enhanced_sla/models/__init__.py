@@ -4,6 +4,5 @@
 ###############################################################################
 
 from . import helpdesk_enhanced_sla
-from . import helpdesk_enhanced_sla_rule
 from . import helpdesk_enhanced_ticket
 from . import helpdesk_enhanced_action

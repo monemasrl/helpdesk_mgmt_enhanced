@@ -13,6 +13,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/action_views.xml",
+        "views/helpdesk_ticket_views.xml",
         "views/menu.xml",
     ],
 }
