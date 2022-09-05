@@ -3,7 +3,11 @@
 #    __manifest__.py file at the root folder of this module.                  #
 ###############################################################################
 
+import logging
+
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class HelpdeskTicket(models.Model):
@@ -29,4 +33,5 @@ class HelpdeskTicket(models.Model):
     @api.onchange("sla_id")
     def _onchange_sla_id(self):
         self.team_id = self.sla_id.team_id
+        _logger.debug("SLA changed")
         self.sla_id.check_sla()

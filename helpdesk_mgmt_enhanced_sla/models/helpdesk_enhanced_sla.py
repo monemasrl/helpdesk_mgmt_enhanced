@@ -3,9 +3,12 @@
 #    __manifest__.py file at the root folder of this module.                  #
 ###############################################################################
 
+import logging
 from datetime import datetime
 
 from odoo import fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class HelpdeskEnhancedSla(models.Model):
@@ -26,8 +29,11 @@ class HelpdeskEnhancedSla(models.Model):
     )
 
     def check_sla(self):
+        _logger.debug("CHECK SLA")
         for team in self.team_id:
+            _logger.debug("Team: {}".format(self.team_id))
             if team.ticket_ids:
+                _logger.debug("Calling check_ticket_sla")
                 self.check_ticket_sla(team.ticket_ids)
 
     def check_ticket_sla(self, ticket_ids):
