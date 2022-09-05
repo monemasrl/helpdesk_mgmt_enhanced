@@ -36,8 +36,9 @@ class HelpdeskEnhancedSla(models.Model):
                 _logger.debug("Calling check_ticket_sla")
                 self.check_ticket_sla(team.ticket_ids)
 
-    def check_ticket_sla(self, ticket_ids):
-        for ticket in ticket_ids.filtered(lambda t: not t.stage_id.closed):
+    def check_ticket_sla(self):
+        # for ticket in ticket_ids.filtered(lambda t: not t.stage_id.closed):
+        for ticket in self:
             deadline = ticket.create_date
             working_calendar = ticket.team_id.resource_calendar_id
 
