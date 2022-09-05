@@ -9,7 +9,7 @@
     "license": "Other OSI approved licence",
     "category": "After-Sales",
     "application": False,
-    "depends": ["helpdesk_mgmt"],
+    "depends": ["helpdesk_mgmt", "helpdesk_mgmt_sla"],
     "data": [
         "views/action_views.xml",
     ],

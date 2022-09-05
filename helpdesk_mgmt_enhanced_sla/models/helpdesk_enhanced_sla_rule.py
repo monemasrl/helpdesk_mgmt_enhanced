@@ -15,9 +15,7 @@ class HelpdeskEnhancedSlaRule(models.Model):
 
     name = fields.Char(required=True, default=lambda self: _("New"), copy=False)
 
-    sla_id = fields.Many2one(
-        comodel_name="helpdesk.enhanced.sla", string="SLA", required=True
-    )
+    sla_id = fields.Many2one(comodel_name="helpdesk.sla", string="SLA", required=True)
     stage_id = fields.Many2one(comodel_name="helpdesk.ticket.stage", string="Stage")
     days = fields.Integer(default=0, required=True)
     hours = fields.Integer(default=0, required=True)

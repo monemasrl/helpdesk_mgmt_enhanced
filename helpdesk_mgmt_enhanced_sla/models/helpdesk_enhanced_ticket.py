@@ -10,7 +10,7 @@ class HelpdeskTicket(models.Model):
     _inherit = "helpdesk.ticket"
 
     sla_id = fields.Many2one(
-        comodel_name="helpdesk.enhanced.sla",
+        comodel_name="helpdesk.sla",
         string="SLA",
         required=True,
         help="The SLA this ticket is attached to",

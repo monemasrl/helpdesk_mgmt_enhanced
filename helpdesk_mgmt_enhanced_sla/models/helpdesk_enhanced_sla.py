@@ -3,17 +3,11 @@
 #    __manifest__.py file at the root folder of this module.                  #
 ###############################################################################
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class HelpdeskEnhancedSla(models.Model):
-    _name = "helpdesk.enhanced.sla"
-    _description = "Helpdesk Enhanced SLA"
-
-    _rec_name = "name"
-    _order = "name ASC"
-
-    name = fields.Char(required=True, default=lambda self: _("New"), copy=False)
+    _inherit = "helpdesk.sla"
 
     team_id = fields.Many2one(
         string="Team",
